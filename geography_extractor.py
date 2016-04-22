@@ -41,7 +41,6 @@ class geography_extractor:
 				'''
 				found_location.add(location)
 				test_text.replace(test_location, ' ')
-		print found_location
 		print "\n"
 		return found_location
 
@@ -52,6 +51,7 @@ class geography_extractor:
 			#line = re.sub(r'[^\w]', '', line)
 			#print line.split(',')
 			continent = line.split(',')[2]
+			acronym = line.split(',')[3]
 			country = line.split(',')[4]
 			district = line.split(',')[6]
 			city = line.split(',')[7]
@@ -65,11 +65,14 @@ class geography_extractor:
 			if continent != '': self._location_set.add(continent)
 			if country != '': self._location_set.add(country)
 			if district != '': self._location_set.add(district)
+			if acronym != '': self._location_set.add(acronym)
+
 			if city != '': 
 				self._location_set.add(city)
 				self._city_set.add(city)
 
-
+		self._location_set.add('USA')
+		self._location_set.add('UK')
 			
 
 if __name__ == '__main__':
